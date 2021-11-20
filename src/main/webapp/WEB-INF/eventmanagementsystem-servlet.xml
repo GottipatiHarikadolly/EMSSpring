@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.mph.*" />
+	<mvc:annotation-driven />
+	<tx:annotation-driven />
+	<aop:aspectj-autoproxy/>
+    <context:property-placeholder location="classpath:database.properties" />
+    <context:property-placeholder location="classpath:log4j.properties" />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
+	</bean>
+
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource" />
+	<property name="annotatedClasses">
+			<list>
+				<value>com.mph.entity.Customer</value>
+				<value>com.mph.entity.Event</value>
+				<value>com.mph.entity.Venue</value>
+				<value>com.mph.entity.FoodItem</value>
+				<value>com.mph.entity.Equipment</value>
+				<value>com.mph.entity.Booking</value>
+				
+			</list>
+		</property>
+	<property name="hibernateProperties">
+	<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+	</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="customer" class="com.mph.entity.Customer" />
+	<bean id="customerDao" class="com.mph.dao.CustomerDaoImpl" />
+	<bean id="customerService" class="com.mph.service.CustomerServiceImpl" />
+	
+	<bean id="event" class="com.mph.entity.Event" />
+	<bean id="eventDao" class="com.mph.dao.EventDaoImpl" />
+	<bean id="eventService" class="com.mph.service.EventServiceImpl" />
+	
+	<bean id="venue" class="com.mph.entity.Venue" />
+	<bean id="venueDao" class="com.mph.dao.VenueDaoImpl" />
+	<bean id="venueService" class="com.mph.service.VenueServiceImpl" />
+	
+	<bean id="fooditem" class="com.mph.entity.FoodItem" />
+	<bean id="fooditemDao" class="com.mph.dao.FoodItemDaoImpl" />
+	<bean id="fooditemService" class="com.mph.service.FoodItemServiceImpl" />
+	
+	<bean id="equipment" class="com.mph.entity.Equipment" />
+	<bean id="equipmentDao" class="com.mph.dao.EquipmentDaoImpl" />
+	<bean id="equipmentService" class="com.mph.service.EquipmentServiceImpl" />
+	
+	<bean id="booking" class="com.mph.entity.Booking" />
+	<bean id="bookingDao" class="com.mph.dao.BookingDaoImpl" />
+	<bean id="bookingService" class="com.mph.service.BookingServiceImpl" />
+	
+	
+</beans>
