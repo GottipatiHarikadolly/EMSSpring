@@ -1,0 +1,479 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Api Documentation",
+        "version": "1.0",
+        "title": "Api Documentation",
+        "termsOfService": "urn:tos",
+        "contact": {},
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "host": "localhost:8080",
+    "basePath": "/emsproject/",
+    "tags": [
+        {
+            "name": "customer-restcontroller",
+            "description": "Customer RestController"
+        },
+        {
+            "name": "customer-service-controller",
+            "description": "Customer Service Controller"
+        },
+        {
+            "name": "event-controller",
+            "description": "EventMS Controller"
+        }
+    ],
+    "paths": {
+        "/customerapi/allcstr": {
+            "get": {
+                "tags": [
+                    "customer-restcontroller"
+                ],
+                "summary": "allcstr",
+                "operationId": "allcstrUsingGET",
+                "produces": [
+                    "/"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Customer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerapi/createcstr": {
+            "post": {
+                "tags": [
+                    "customer-restcontroller"
+                ],
+                "summary": "createcstr",
+                "operationId": "createcstrUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "customer",
+                        "description": "customer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+       
+        "/customer service Controller api/getCustomer/{id}": {
+            "get": {
+                "tags": [
+                    "customer service Controller"
+                ],
+                "summary": "getCustomerById",
+                "operationId": "getCustomerByIdUsingGET",
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerapi/updateCustomer": {
+            "put": {
+                "tags": [
+                    "customer-controller"
+                ],
+                "summary": "updateCustomer",
+                "operationId": "updateCustomerUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "customer",
+                        "description": "customer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Customer"
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerserv/allcstr": {
+            "get": {
+                "tags": [
+                    "customer-service-controller"
+                ],
+                "summary": "allCustomerServiceE",
+                "operationId": "allCustomerServiceEUsingGET",
+                "produces": [
+                    "/"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerserv/createCustomerService": {
+            "post": {
+                "tags": [
+                    "customer-service-controller"
+                ],
+                "summary": "createCustomerServiceE",
+                "operationId": "createCustomerServiceUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "customerServiceE",
+                        "description": "customerServiceE",
+                        "required": true,
+                        "schema": {
+                          "$ref": "#/definition/CustomerServiceE"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerServiceE"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/Customerapi/allcstr": {
+            "get": {
+                "tags": [
+                    "Customer-controller"
+                ],
+                "summary": "allcstr",
+                "operationId": "allcstrUsingGET",
+                "produces": [
+                    "/"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Customer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerapi/createcustomer": {
+            "post": {
+                "tags": [
+                    "customer-controller"
+                ],
+                "summary": "createCustomer",
+                "operationId": "createCustomerUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "customer",
+                        "description": "customer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerapi/getCustomer/{id}": {
+            "get": {
+                "tags": [
+                    "customer-controller"
+                ],
+                "summary": "getCustomerById",
+                "operationId": "getCustomerByIdUsingGET",
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                  "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/customerapi/updateCustomer": {
+            "put": {
+                "tags": [
+                    "customer-controller"
+                ],
+                "summary": "updateCustomer",
+                "operationId": "updateCustomerUsingPUT_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "/"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "customer",
+                        "description": "customer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Customer"
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "Customer": {
+            "type": "object",
+            "properties": {
+                "customerid": {
+                    "type": "int"
+                },
+                "emailid": {
+                    "type": "string"
+                },
+                
+              "contactno": {
+                    "type": "long",
+                    
+                },
+                "customername": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "title": "Customer"
+        },
+
+    }
+}
